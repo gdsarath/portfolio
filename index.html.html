@@ -1,728 +1,966 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-    <!-- BEGIN HEAD -->
-    <head>
-        <meta charset="utf-8"/>
-        <title>SarathPortfolio</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport"/>
-        <meta content="" name="description"/>
-        <meta content="" name="author"/>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GD Sarath — Finance & Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #0d0d0d;
+      --paper: #f5f0e8;
+      --cream: #ede8da;
+      --gold: #b8860b;
+      --gold-light: #d4a017;
+      --accent: #1a3a5c;
+      --accent-soft: #2c5282;
+      --muted: #6b6b6b;
+      --white: #ffffff;
+    }
 
-        <!-- GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
-        <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <!-- PAGE LEVEL PLUGIN STYLES -->
-        <link href="css/animate.css" rel="stylesheet">
+    html { scroll-behavior: smooth; }
 
-        <!-- THEME STYLES -->
-        <link href="css/layout.min.css" rel="stylesheet" type="text/css"/>
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="favicon.ico"/>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
-        <style>
-            /* Justifies the "About Me" text */
-            #about p {
-                text-align: justify;
-            }
-            
-            /* Justifies the "Publications" text */
-            #publications .service-info p {
-                text-align: justify;
-            }
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,134,11,0.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 900;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--ink); position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
 
-            /* Adjusts the background image position */
-            .promo-block-parallax-window {
-                background-position: center top !important; /* Forces the top of the image to be visible */
-            }
-        </style>
-    </head>
-    </head>
-    </head>
-    </head>
-    <!-- END HEAD -->
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: 'FINANCE';
+      position: absolute; right: -2rem; top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem; font-weight: 900;
+      color: rgba(184,134,11,0.06);
+      white-space: nowrap; pointer-events: none;
+      letter-spacing: 0.3em;
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block;
+      width: 40px; height: 1px; background: var(--gold);
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 900; line-height: 1;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-name span { color: var(--gold); display: block; }
+    .hero-tagline {
+      font-size: 1.1rem; font-weight: 300;
+      color: var(--muted); line-height: 1.7;
+      max-width: 420px; margin-bottom: 3rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 0.9rem 2rem;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+    }
+    .btn-primary:hover { background: var(--accent-soft); transform: translateY(-2px); }
+    .btn-outline {
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--ink);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid var(--ink);
+      cursor: pointer; transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-    <!-- BODY -->
-    <body id="body" data-spy="scroll" data-target=".header">
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-card {
+      background: var(--accent);
+      color: var(--white);
+      padding: 3rem;
+      position: relative;
+      width: 340px;
+      box-shadow: 20px 20px 0 var(--gold);
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .hero-card-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+    }
+    .hero-card-stat {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .hero-card-desc {
+      font-size: 0.85rem; color: rgba(255,255,255,0.7);
+      margin-top: 0.3rem; margin-bottom: 2rem;
+    }
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .hero-stat-item {}
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--white);
+    }
+    .hero-stat-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.5); }
 
-        <!--========== HEADER ==========-->
-        <header class="header navbar-fixed-top">
-            <!-- Navbar -->
-            <nav class="navbar" role="navigation">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="menu-container js_nav-item">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="toggle-icon"></span>
-                        </button>
+    /* ── SECTION COMMON ──────────────────────────────────── */
+    section { padding: 6rem 4rem; }
+    .section-header { margin-bottom: 4rem; }
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-tag::before {
+      content: ''; width: 30px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; color: var(--accent);
+      line-height: 1.1;
+    }
 
-                        
-                    </div>
+    /* ── ABOUT ───────────────────────────────────────────── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .about-text p {
+      font-size: 1rem; line-height: 1.9;
+      color: var(--muted); margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+    .skills-list { margin-top: 3rem; }
+    .skill-item { margin-bottom: 1.5rem; }
+    .skill-top {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: 0.5rem;
+    }
+    .skill-name {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink);
+    }
+    .skill-pct {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem; color: var(--gold);
+    }
+    .skill-bar {
+      height: 3px; background: rgba(0,0,0,0.08);
+      position: relative; overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold));
+      transform-origin: left;
+      animation: barFill 1.5s ease forwards;
+      transform: scaleX(0);
+    }
+    @keyframes barFill { to { transform: scaleX(1); } }
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse nav-collapse">
-                        <div class="menu-container">
-                            <ul class="nav navbar-nav navbar-nav-right">
-                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#body">Home</a></li>
-                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#about">About</a></li>
-                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#courses">Courses</a></li>
-                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#work">Work</a></li>
-                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#publications">Publications</a></li>
-                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="#contact">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Navbar Collapse -->
-                </div>
-            </nav>
-            <!-- Navbar -->
-        </header>
-        <!--========== END HEADER ==========-->
+    /* ── COURSES ─────────────────────────────────────────── */
+    #courses { background: var(--cream); }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .course-card {
+      background: var(--white);
+      padding: 2rem;
+      border-left: 3px solid transparent;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: scaleX(0);
+      transform-origin: left; transition: transform 0.4s;
+      z-index: 0;
+    }
+    .course-card:hover::before { transform: scaleX(1); }
+    .course-card:hover { border-left-color: var(--gold); }
+    .course-card:hover .course-title,
+    .course-card:hover .course-desc,
+    .course-card:hover .course-org { color: var(--white); }
+    .course-card:hover .course-icon { color: var(--gold-light); }
+    .course-icon {
+      font-size: 1.5rem; color: var(--gold);
+      margin-bottom: 1rem; position: relative; z-index: 1;
+      transition: color 0.3s;
+    }
+    .course-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--accent); margin-bottom: 0.5rem;
+      position: relative; z-index: 1; transition: color 0.3s;
+    }
+    .course-org {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.8rem;
+      position: relative; z-index: 1; transition: color 0.3s;
+    }
+    .course-desc {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.6;
+      position: relative; z-index: 1; transition: color 0.3s;
+    }
 
-        <!--========== SLIDER ==========-->
-        <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="img/1920x1080/01.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                      <div class="promo-block-divider">
-                          <h1 class="promo-block-title" style="color: light grey;">GD <br/> Sarath</h1> 
-                          <p class="promo-block-text" style="color: light grey;">Passionate About Finance</p>
-                        </div>
-                        <ul class="list-inline">
-                    
-                            <li><a href="mailto:gdsarath2005@gmail.com" class="social-icons"><i class="icon-social-google"></i></a></li>
-                            <li><a href="https://www.linkedin.com/in/gd-sarath" class="social-icons"target="_blank"><i class="icon-social-linkedin"></i></a></li>
-                        </ul>
-                      
-                    </div>
-                </div>
-                <!--// end row -->
-            </div>
+    /* ── WORK ────────────────────────────────────────────── */
+    #work { background: var(--white); }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .work-card {
+      background: var(--cream);
+      padding: 2.5rem 2rem;
+      border-top: 3px solid var(--accent);
+      transition: all 0.3s;
+    }
+    .work-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border-top-color: var(--gold);
+    }
+    .work-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem; color: var(--gold);
+      letter-spacing: 0.15em; margin-bottom: 1rem;
+    }
+    .work-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .work-subtitle {
+      font-size: 0.78rem; color: var(--gold);
+      font-weight: 500; margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .work-desc {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .work-tag {
+      font-size: 0.7rem; font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      background: rgba(26,58,92,0.08);
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .work-link {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; color: var(--accent);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    .work-link:hover { color: var(--gold); }
+    .work-link::after {
+      content: '→'; transition: transform 0.3s;
+    }
+    .work-link:hover::after { transform: translateX(4px); }
+
+    /* ── PUBLICATIONS ────────────────────────────────────── */
+    #publications { background: var(--accent); }
+    #publications .section-tag { color: var(--gold-light); }
+    #publications .section-tag::before { background: var(--gold-light); }
+    #publications .section-title { color: var(--white); }
+    .pub-list { display: flex; flex-direction: column; gap: 2px; margin-top: 3rem; }
+    .pub-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      padding: 2rem;
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid transparent;
+      transition: all 0.3s; cursor: default;
+    }
+    .pub-item:hover {
+      background: rgba(255,255,255,0.08);
+      border-left-color: var(--gold-light);
+    }
+    .pub-icon { font-size: 1.5rem; color: var(--gold-light); margin-top: 0.2rem; }
+    .pub-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .pub-desc {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6);
+      line-height: 1.7; text-align: justify;
+    }
+    .pub-meta { text-align: right; white-space: nowrap; }
+    .pub-book {
+      font-size: 0.8rem; font-weight: 500;
+      color: rgba(255,255,255,0.5); margin-bottom: 0.3rem;
+      font-style: italic;
+    }
+    .pub-isbn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; color: var(--gold-light);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTACT ─────────────────────────────────────────── */
+    #contact { background: var(--paper); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .contact-intro {
+      font-size: 1rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 2.5rem;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 2rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1.2rem; }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--accent);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+    .contact-value {
+      font-size: 0.95rem; color: var(--ink); font-weight: 400;
+      text-decoration: none;
+    }
+    .contact-value:hover { color: var(--gold); }
+    .contact-social {
+      display: flex; gap: 1rem; margin-top: 3rem;
+    }
+    .social-btn {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(0,0,0,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none;
+      color: var(--ink); transition: all 0.3s;
+    }
+    .social-btn:hover {
+      background: var(--accent); color: var(--white);
+      border-color: var(--accent);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.4);
+      padding: 2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── DECORATIVE ──────────────────────────────────────── */
+    .divider {
+      height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.3; margin: 0 4rem;
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── CERTIFICATE POPUP ───────────────────────────────── */
+    .cert-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .cert-overlay.active { opacity: 1; pointer-events: all; }
+    .cert-modal {
+      position: relative;
+      max-width: 85vw; max-height: 85vh;
+      background: var(--white);
+      padding: 1.2rem;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .cert-overlay.active .cert-modal {
+      transform: scale(1) translateY(0);
+    }
+    .cert-modal img {
+      display: block; max-width: 100%; max-height: calc(85vh - 5rem);
+      object-fit: contain;
+    }
+    .cert-modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--accent); margin-top: 0.8rem;
+      text-align: center;
+    }
+    .cert-close {
+      position: absolute; top: -1.2rem; right: -1.2rem;
+      width: 36px; height: 36px;
+      background: var(--accent); color: var(--white);
+      border: none; cursor: pointer;
+      font-size: 1.1rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .cert-close:hover { background: var(--gold); }
+    .cert-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px;
+      background: var(--accent); color: var(--white);
+      border: none; cursor: pointer; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 10;
+    }
+    .cert-nav:hover { background: var(--gold); }
+    .cert-prev { left: -1.5rem; }
+    .cert-next { right: -1.5rem; }
+    .cert-counter {
+      position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: rgba(255,255,255,0.6); letter-spacing: 0.1em;
+    }
+
+    /* Make course cards look clickable */
+    .course-card { cursor: pointer; }
+    .course-card .cert-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-top: 1rem; position: relative; z-index: 1;
+      transition: color 0.3s;
+    }
+    .course-card:hover .cert-badge { color: rgba(255,255,255,0.7); }
+    .cert-badge::before { content: '🔖'; font-size: 0.8rem; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { gap: 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 8rem 2rem 4rem; gap: 4rem; }
+      .hero-visual { justify-content: flex-start; }
+      .hero::before { display: none; }
+      section { padding: 5rem 2rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .work-grid { grid-template-columns: 1fr; }
+      .pub-item { grid-template-columns: auto 1fr; }
+      .pub-meta { display: none; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-card { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">GD Sarath</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content fade-in">
+      <div class="hero-eyebrow">Finance &amp; Analytics Professional</div>
+      <h1 class="hero-name">GD<span>Sarath</span></h1>
+      <p class="hero-tagline">Master of Commerce in Finance. Passionate about financial markets, data intelligence, and the intersection of technology and finance.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Hire Me</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-in">
+      <div class="hero-card">
+        <div class="hero-card-label">Projects Completed</div>
+        <div class="hero-card-stat">5+</div>
+        <div class="hero-card-desc">Financial analytics &amp; data projects</div>
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-lbl">Research Papers</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">8</div>
+            <div class="hero-stat-lbl">Certifications</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">80%</div>
+            <div class="hero-stat-lbl">Power BI</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">45yr</div>
+            <div class="hero-stat-lbl">Data Analyzed</div>
+          </div>
         </div>
-        <!--========== SLIDER ==========-->
+      </div>
+    </div>
+  </section>
 
-        <!--========== PAGE LAYOUT ==========-->
-        <!-- About -->
-        <div id="about">
-            <div class="container content-lg">
-                <div class="row">
-                    <div class="col-sm-3 sm-margin-b-30">
-                        <div class="text-right sm-text-left">
-                            <h2 class="margin-b-0">Intro</h2>
-                            <p>What I am all about.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-8 col-sm-offset-1">
-                        <div class="margin-b-60">
-                            <p>I'm GD Sarath, a dedicated Master of Commerce in Finance student with a strong academic foundation in both finance and accounting. I am passionate about analyzing financial markets, demonstrated through my certifications in Financial Risk Analysis and a specialization in Finance & Financial Markets.</p>
-                            <p>My academic knowledge from my Master of Commerce in Finance is enhanced by practical experience in maintaining company accounts, understanding financial ledgers, and handling GST filings. I am proficient in key industry tools like Tally Prime and Power BI. I am driven by financial innovation, actively developing a finance application and having presented multiple research papers on the intersection of technology and finance, including AI-powered Finance and Payments.</p>
-                        </div>
+  <div class="divider"></div>
 
-                        <!-- Progress Box -->
-                        <div class="progress-box">
-                            <h5>POWER BI <span class="color-heading pull-right">80%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-color-base" role="progressbar" data-width="80"></div>
-                            </div>
-                        </div>
-                        <div class="progress-box">
-                            <h5>EXCEL <span class="color-heading pull-right">60%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-color-base" role="progressbar" data-width="80"></div>
-                            </div>
-                        </div>
-                        <div class="progress-box">
-                            <h5>TALLY PRIME <span class="color-heading pull-right">80%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-color-base" role="progressbar" data-width="80"></div>
-                            </div>
-                        </div>
-                        <div class="progress-box">
-                            <h5>WAVE ACCOUNTING SOFTWARE <span class="color-heading pull-right">77%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-color-base" role="progressbar" data-width="77"></div>
-                            </div>
-                        </div>
-                        <!-- End Progress Box -->
-                    </div>
-                </div>
-                <!--// end row -->
-            </div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header fade-in">
+      <div class="section-tag">01 — About</div>
+      <h2 class="section-title">What I'm all about.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I'm GD Sarath, a dedicated Master of Commerce in Finance student with a strong academic foundation in both finance and accounting. I am passionate about analyzing financial markets, demonstrated through my certifications in Financial Risk Analysis and a specialization in Finance &amp; Financial Markets.</p>
+        <p>My academic knowledge is enhanced by practical experience in maintaining company accounts, understanding financial ledgers, and handling GST filings. I am proficient in key industry tools like Tally Prime and Power BI.</p>
+        <p>I am driven by financial innovation, actively developing a finance application and having presented multiple research papers on the intersection of technology and finance, including AI-powered Finance and Payments.</p>
+      </div>
+      <div class="skills-list fade-in">
+        <div class="skill-item">
+          <div class="skill-top">
+            <span class="skill-name">Power BI</span>
+            <span class="skill-pct">80%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
         </div>
-        <!-- End About -->
-
-        <!-- cources -->
-        <div id="courses">
-            <div class="bg-color-sky-light" data-auto-height="true">
-                <div class="container content-lg">
-                    <div class="row">
-                        <div class="col-sm-3 sm-margin-b-30">
-                            <div class="text-right sm-text-left">
-                                <h2 class="margin-b-0">Courses</h2>
-                                <p>Dedicated to continuous learning.</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-8 col-sm-offset-1">
-                            <div class="row row-space-2 margin-b-4">
-                                <div class="col-md-4 md-margin-b-4">
-                                    <div class="service" data-height="height">
-                                        <div class="service-element">
-                                            <i class="service-icon icon-briefcase"></i>
-                                        </div>
-                                        <a href="img/certificate/01.png" data-lightbox="coursework"></a>
-                                            <div class="service-block-in">
-                                                <div class="service-icon">
-                                                    <i class="fa fa-chart-bar"></i>
-                                                </div>
-                                                <div class="service-info">
-                                                    <h3>Financial literacy</h3>
-                                                    <p class="margin-b-5">Completed the NISM program covering key concepts in securities markets and financial planning.</p>
-                                                </div>
-                                            </div>
-                                        
-                                        <a href="img/certificate/01.png" data-lightbox="coursework" class="content-wrapper-link"></a>  
-                                    </div>
-                                </div>
-                                <div class="col-md-4 md-margin-b-4">
-                                    <div class="service bg-color-base wow zoomIn" data-height="height" data-wow-duration=".3" data-wow-delay=".1s">
-                                        <div class="service-element">
-                                            <i class="service-icon color-white icon-screen-tablet"></i>
-                                        </div>
-                                        <a href="img/certificate/02.png" data-lightbox="coursework"></a>
-                                            <div class="service-block-in">
-                                                <div class="service-icon">
-                                                    <i class="fa fa-chart-bar"></i>
-                                                </div>
-                                                <div class="service-info">
-                                                    <h3 class="color-white">Investor Education</h3>
-                                                    <p class="color-white margin-b-5">Completed the NISM program covering advanced concepts in investment principles and securities market analysis.</p>
-                                                </div>
-                                           </div>
-                                        <a href="img/certificate/02.png" data-lightbox="coursework" class="content-wrapper-link"></a>    
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="service" data-height="height">
-                                        <div class="service-element">
-                                            <i class="service-icon icon-badge"></i>
-                                        </div>
-                                         <a href="img/certificate/03.png" data-lightbox="coursework"></a>
-                                            <div class="service-block-in">
-                                                <div class="service-icon"></div>
-                                                    <i class="fa fa-chart-bar"></i>
-                                                </div>    
-                                                <div class="service-info">
-                                                  <h3>Digital Assurance</h3>
-                                                  <p class="margin-b-5">Completed the PwC Digital Assurance job simulation, covering practical tasks in data analysis, ERP systems, and internal controls.</p>
-
-                                                </div>
-                                            </div>
-                                        <a href="img/certificate/03.png" data-lightbox="coursework" class="content-wrapper-link"></a>    
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-space-2 margin-b-4">
-
-    <div class="col-md-4 md-margin-b-4">
-        <div class="service" data-height="height">
-            <a href="img/certificate/04.png" data-lightbox="coursework" data-title="Forage Financial Analyst Certificate">
-                <div class="service-element">
-                    <i class="service-icon icon-graph"></i>
-                </div>
-                <div class="service-info">
-                    <h3>Financial Analyst</h3>
-                    <p class="margin-b-5">Completed the Forage job simulation, performing practical tasks in financial analysis and reporting.</p>
-                </div>
-                <a href="img/certificate/04.png"data-lightbox="coursework" " class="content-wrapper-link"></a>
-            </a>
+        <div class="skill-item">
+          <div class="skill-top">
+            <span class="skill-name">Microsoft Excel</span>
+            <span class="skill-pct">60%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" style="width:60%; animation-delay:0.2s"></div></div>
         </div>
+        <div class="skill-item">
+          <div class="skill-top">
+            <span class="skill-name">Tally Prime</span>
+            <span class="skill-pct">80%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%; animation-delay:0.4s"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top">
+            <span class="skill-name">Wave Accounting</span>
+            <span class="skill-pct">77%</span>
+          </div>
+          <div class="skill-bar"><div class="skill-fill" style="width:77%; animation-delay:0.6s"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- COURSES -->
+  <section id="courses">
+    <div class="section-header fade-in">
+      <div class="section-tag">02 — Courses & Certifications</div>
+      <h2 class="section-title">Dedicated to continuous learning.</h2>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card fade-in" data-cert="img/certificate/01.png" data-cert-title="Financial Literacy — NISM">
+        <div class="course-icon">📊</div>
+        <div class="course-title">Financial Literacy</div>
+        <div class="course-org">NISM</div>
+        <div class="course-desc">Completed the NISM program covering key concepts in securities markets and financial planning.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
+      <div class="course-card fade-in" data-cert="img/certificate/02.png" data-cert-title="Investor Education — NISM">
+        <div class="course-icon">📈</div>
+        <div class="course-title">Investor Education</div>
+        <div class="course-org">NISM</div>
+        <div class="course-desc">Advanced concepts in investment principles and securities market analysis.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
+      <div class="course-card fade-in" data-cert="img/certificate/03.png" data-cert-title="Digital Assurance — PwC">
+        <div class="course-icon">🔍</div>
+        <div class="course-title">Digital Assurance</div>
+        <div class="course-org">PwC</div>
+        <div class="course-desc">Job simulation covering practical tasks in data analysis, ERP systems, and internal controls.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
+      <div class="course-card fade-in" data-cert="img/certificate/04.png" data-cert-title="Financial Analyst — Forage">
+        <div class="course-icon">💼</div>
+        <div class="course-title">Financial Analyst</div>
+        <div class="course-org">Forage</div>
+        <div class="course-desc">Practical tasks in financial analysis and reporting through the Forage job simulation.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
+      <div class="course-card fade-in" data-cert="img/certificate/05.png" data-cert-title="Finance & Financial Markets — Coursera">
+        <div class="course-icon">🎓</div>
+        <div class="course-title">Finance &amp; Financial Markets</div>
+        <div class="course-org">Coursera</div>
+        <div class="course-desc">Specialization covering financial statement analysis, corporate finance, and risk management.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
+      <div class="course-card fade-in" data-cert="img/certificate/06.png" data-cert-title="Financial Risk Analytics — Great Learning">
+        <div class="course-icon">🛡️</div>
+        <div class="course-title">Financial Risk Analytics</div>
+        <div class="course-org">Great Learning</div>
+        <div class="course-desc">Skills in identifying, assessing, and modeling financial risks using analytical methods.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
+      <div class="course-card fade-in" data-cert="img/certificate/07.png" data-cert-title="Power BI — Besant Technologies">
+        <div class="course-icon">🖥️</div>
+        <div class="course-title">Power BI</div>
+        <div class="course-org">Besant Technologies</div>
+        <div class="course-desc">Mastering data visualization, dashboard creation, and business intelligence reporting with Power BI.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
+      <div class="course-card fade-in" data-cert="img/certificate/08.png" data-cert-title="Accounting Software — Infosys Springboard">
+        <div class="course-icon">🧾</div>
+        <div class="course-title">Accounting Software</div>
+        <div class="course-org">Infosys Springboard</div>
+        <div class="course-desc">Practical skills in cloud-based accounting and invoicing using Wave Apps.</div>
+        <div class="cert-badge">View Certificate</div>
+      </div>
     </div>
 
-    <div class="col-md-4 md-margin-b-4">
-        <div class="service bg-color-base wow zoomIn" data-height="height" data-wow-duration=".3" data-wow-delay=".1s">
-            <a href="imgcertificate/05.png" data-lightbox="coursework" data-title="Coursera Finance Certificate">
-                <div class="service-element">
-                    <i class="service-icon color-white icon-speedometer"></i>
-                </div>
-                <div class="service-info">
-                    <h3 class="color-white">Finance & Financial Markets</h3>
-                    <p class="color-white margin-b-5">Completed the Coursera specialization covering essential skills in financial statement analysis, corporate finance, and risk management.</p>
-                </div>
-                <a href="img/certificate/05.png" data-lightbox="coursework" class="content-wrapper-link"></a>
-            </a>
-        </div>
+  <!-- CERTIFICATE LIGHTBOX -->
+  <div class="cert-overlay" id="certOverlay">
+    <div class="cert-modal">
+      <button class="cert-close" id="certClose">✕</button>
+      <button class="cert-nav cert-prev" id="certPrev">&#8592;</button>
+      <button class="cert-nav cert-next" id="certNext">&#8594;</button>
+      <img src="" alt="Certificate" id="certImg"/>
+      <div class="cert-modal-title" id="certTitle"></div>
+      <div class="cert-counter" id="certCounter"></div>
     </div>
+  </div>
+  </section>
 
-    <div class="col-md-4 md-margin-b-4">
-        <div class="service" data-height="height">
-            <a href="img/certificate/06.png" data-lightbox="coursework" data-title="Great Learning Risk Analytics Certificate">
-                <div class="service-element">
-                    <i class="service-icon icon-shield"></i>
-                </div>
-                <div class="service-info">
-                    <h3>Financial Risk Analytics</h3>
-                    <p class="margin-b-5">Completed the Great Learning program, gaining skills in identifying, assessing, and modeling financial risks.</p>
-                </div>
-                <a href="img/certificate/06.png" data-lightbox="coursework" class="content-wrapper-link"></a>
-            </a>
-        </div>
+  <div class="divider"></div>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-header fade-in">
+      <div class="section-tag">03 — Works</div>
+      <h2 class="section-title">I build real value.</h2>
     </div>
-    
-    <div class="row row-space-2 margin-b-4">
-     <div class="col-md-4 md-margin-b-4">
-        <div class="service bg-color-base wow zoomIn" data-height="height" data-wow-duration=".3" data-wow-delay=".1s">
-            <a href="imgcertificate/07.png" data-lightbox="coursework" data-title="Coursera Finance Certificate">
-                <div class="service-element">
-                    <i class="service-icon icon-pie-chart"></i>
-                </div>
-                <div class="service-info">
-                    <h3 class="color-white">Power BI</h3>
-                    <p class="color-white margin-b-5">Completed the Besant Technologies program, mastering data visualization, dashboard creation, and business intelligence reporting with Power BI.</p>
-                </div>
-                <a href="img/certificate/07.png" data-lightbox="coursework" class="content-wrapper-link"></a>
-            </a>
+    <div class="work-grid">
+      <div class="work-card fade-in">
+        <div class="work-num">01</div>
+        <div class="work-title">Expense Tracker</div>
+        <div class="work-subtitle">Clean &amp; Minimalistic Design</div>
+        <div class="work-desc">A comprehensive expense tracking system built in Microsoft Excel. Records daily income and expenses using advanced formulas and structured data to deliver clear financial insights.</div>
+        <div class="work-tags">
+          <span class="work-tag">Excel</span>
+          <span class="work-tag">Original Dataset</span>
         </div>
+        <a href="https://github.com/gdsarath/Expense-Tracker-.git" target="_blank" class="work-link">View on GitHub</a>
+      </div>
+      <div class="work-card fade-in">
+        <div class="work-num">02</div>
+        <div class="work-title">Netflix Data Analysis</div>
+        <div class="work-subtitle">Content Library &amp; Global Trends</div>
+        <div class="work-desc">An end-to-end Power BI dashboard analyzing Netflix's content library from 1959 to 2021. Dynamic visualizations of rating trends, genre popularity, and geographical heatmaps.</div>
+        <div class="work-tags">
+          <span class="work-tag">Power BI</span>
+          <span class="work-tag">Data Viz</span>
+          <span class="work-tag">Global Trends</span>
+        </div>
+        <a href="https://github.com/gdsarath/Netflix-Data-Analysis-PowerBI.git" target="_blank" class="work-link">View on GitHub</a>
+      </div>
+      <div class="work-card fade-in">
+        <div class="work-num">03</div>
+        <div class="work-title">Intra &amp; Inter Firm Analysis</div>
+        <div class="work-subtitle">Financial Performance &amp; Comparative Study</div>
+        <div class="work-desc">Detailed analysis comparing financial performance within a single organization (Intra) and against industry competitors (Inter) to identify trends, strengths, and improvement areas.</div>
+        <div class="work-tags">
+          <span class="work-tag">Corporate Finance</span>
+          <span class="work-tag">Original Dataset</span>
+        </div>
+        <a href="https://github.com/gdsarath/INTRA-AND-INTER-FIRM-ANALYSIS.git" target="_blank" class="work-link">View on GitHub</a>
+      </div>
+      <div class="work-card fade-in">
+        <div class="work-num">04</div>
+        <div class="work-title">JPM Equity Hub</div>
+        <div class="work-subtitle">Predictive Pricing &amp; Trust Modeling</div>
+        <div class="work-desc">Interactive Power BI suite analyzing 45 years of JPMorgan Chase market data. Features advanced DAX measures and a "Deep Dive" into Algorithmic Trust for evaluating automated trading models.</div>
+        <div class="work-tags">
+          <span class="work-tag">Power BI</span>
+          <span class="work-tag">DAX</span>
+          <span class="work-tag">Predictive Analytics</span>
+        </div>
+        <a href="https://github.com/gdsarath/Predictive-Pricing-Trust-Modeling.git" target="_blank" class="work-link">View on GitHub</a>
+      </div>
+      <div class="work-card fade-in">
+        <div class="work-num">05</div>
+        <div class="work-title">Trend Analysis</div>
+        <div class="work-subtitle">Data Visualization &amp; Predictive Modeling</div>
+        <div class="work-desc">Trend analysis of Crompton Pvt Ltd financial performance from 2016–2025 using real financial data and advanced analytical methods to uncover growth patterns.</div>
+        <div class="work-tags">
+          <span class="work-tag">Trend Analysis</span>
+          <span class="work-tag">Original Dataset</span>
+        </div>
+        <a href="https://github.com/gdsarath/TREND-ANALYSIS.git" target="_blank" class="work-link">View on GitHub</a>
+      </div>
     </div>
+  </section>
 
-    <div class="col-md-4 md-margin-b-4">
-        <div class="service" data-height="height">
-            <a href="img/certificate/08.png" data-lightbox="coursework" data-title="Infosys Accounting Software Certificate">
-                <div class="service-element">
-                    <i class="service-icon icon-calculator"></i>
-                </div>
-                <div class="service-info">
-                    <h3>Accounting Software</h3>
-                    <p class="margin-b-5">Completed the Infosys Springboard course on Wave Apps, gaining practical skills in modern, cloud-based accounting and invoicing software.</p>
-                </div>
-                <a href="img/certificate/08.png" data-lightbox="coursework" class="content-wrapper-link"></a>
-            </a>
-        </div>
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="section-header fade-in">
+      <div class="section-tag">04 — Publications</div>
+      <h2 class="section-title">My academic research papers.</h2>
     </div>
-
-    <div class="col-md-4 md-margin-b-4">
+    <div class="pub-list">
+      <div class="pub-item fade-in">
+        <div class="pub-icon">📱</div>
+        <div>
+          <div class="pub-title">AI in Commerce</div>
+          <div class="pub-desc">Explores how AI is reshaping commerce by automating processes, personalizing customer experiences, and enhancing data-driven decision-making. Analyzes AI's transformative impact on business operations while considering the ethical and technical challenges.</div>
+        </div>
+        <div class="pub-meta">
+          <div class="pub-book">Next Gen Business Strategies</div>
+          <div class="pub-isbn">ISBN 978-93-342-3230-1</div>
+        </div>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-icon">🌿</div>
+        <div>
+          <div class="pub-title">Eco Mobile Banking</div>
+          <div class="pub-desc">Investigates the role of FinTech and mobile banking in promoting environmental sustainability. Analyzes how digital banking solutions can reduce paper waste and carbon footprints, aligning financial technology with eco-friendly goals.</div>
+        </div>
+        <div class="pub-meta">
+          <div class="pub-book">Empowering India's Future</div>
+          <div class="pub-isbn">ISBN 978-93-48151-47-6</div>
+        </div>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-icon">🔐</div>
+        <div>
+          <div class="pub-title">Biometrics in Payments</div>
+          <div class="pub-desc">Examines the evolution of contactless payments from cards to biometric authentication, arguing that this shift enhances security, deters fraud, and builds greater user trust while creating a more seamless transaction experience.</div>
+        </div>
+        <div class="pub-meta">
+          <div class="pub-book">The Future of Digitalization</div>
+          <div class="pub-isbn">ISBN 978-93-49882-13-3</div>
+        </div>
+      </div>
+      <div class="pub-item fade-in">
+        <div class="pub-icon">🤝</div>
+        <div>
+          <div class="pub-title">Trans Entrepreneurship</div>
+          <div class="pub-desc">Investigates the significant challenges faced by transgender entrepreneurs, analyzing economic and social barriers while highlighting how supporting their ventures can drive economic mobility and foster social inclusion.</div>
+        </div>
+        <div class="pub-meta">
+          <div class="pub-book">Inhibitions of Trans Entrepreneurs</div>
+          <div class="pub-isbn">ISBN 978-81-970764-7-3</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-</div>
-
-</div>
-                            <!--// end row -->
-                        </div>
-                    </div>
-                    <!--// end row -->
-                </div>
-            </div>
-        </div>
-        <!-- End cources -->
-         <!-- Work -->
-        <div id="work">
-            <div class="container content-lg">
-                <div class="row">
-                    <div class="col-sm-3 sm-margin-b-30">
-                        <div class="text-right sm-text-left">
-                            <h2 class="margin-b-0">Works</h2>
-                            <p>I build the real value.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-8 col-sm-offset-1">
-                        <!-- Masonry Grid -->
-                        <div class="masonry-grid row row-space-2">
-                            <div class="masonry-grid-sizer col-xs-6 col-sm-6 col-md-1"></div>
-                            <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-8 margin-b-4">
-         <!-- Work -->
-                                <div class="work work-popup-trigger">
-                                    <div class="work-overlay">
-                                        <img class="full-width img-responsive" src="img/800x400/01.jpg" alt="Portfolio Image">
-                                    </div>
-                                    <div class="work-popup-overlay">
-                                        <div class="work-popup-content">
-                                            <a href="javascript:void(0);" class="work-popup-close">Hide</a>
-                                            <div class="margin-b-30">
-                                                <h3 class="margin-b-5">Expense Tracker</h3>
-                                                <span>Clean &amp; Minimalistic Design</span>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-                                                    <div class="margin-t-10 sm-margin-t-0">
-                                                        <p>Created a comprehensive expense tracking system using Microsoft Excel. This tool allows for the efficient recording of daily income and expenses, utilizing advanced formulas and structured data to provide clear financial insights.</p>
-                                                        
-                                                        <ul class="list-inline work-popup-tag">
-                                                            <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">With Original Data Base</a></li>
-                                                           
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="margin-t-10 sm-margin-t-0">
-                                                        
-                                                        <p class="margin-b-5"><strong>created by</strong> GD SARATH</p>
-                                                        <a href="https://github.com/gdsarath/Expense-Tracker-.git" target="_blank" style="color: #515769; font-weight: 700;">
-                                View File on GitHub <i class="icon-arrow-right"></i>
-                            </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Work -->
-                             </div>
-                            <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 md-margin-b-4">
-    <div class="work work-popup-trigger">
-        <div class="work-overlay">
-            <img class="full-width img-responsive" src="img/397x300/04.jpg" alt="Netflix Data Analysis">
-        </div>
-        <div class="work-popup-overlay">
-            <div class="work-popup-content">
-                <a href="javascript:void(0);" class="work-popup-close">Hide</a>
-                <div class="margin-b-30">
-                    <h3 class="margin-b-5">Netflix Data Analysis</h3>
-                    <span>Content Library & Global Trends</span>
-                </div>
-                <div class="row">
-                    <div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p>An end-to-end Power BI dashboard analyzing Netflix's content library from 1959 to 2021. This project provides a comprehensive look at global distribution and how streaming content has evolved over six decades.</p>
-                            <p>Key features include dynamic visualizations of rating trends, genre popularity shifts, and geographical heatmaps to track content reach.</p>
-                            
-                            <ul class="list-inline work-popup-tag">
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">Power BI,</a></li>
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">Data Viz,</a></li>
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">Global Trends</a></li>
-                            </ul>
-
-                            <div class="margin-t-20">
-                                <a href="https://github.com/gdsarath/Netflix-Data-Analysis-PowerBI.git" target="_blank" class="btn-theme btn-theme-sm btn-white-bg text-uppercase">View on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p class="margin-b-5"><strong>Tools:</strong> Power BI</p>
-                            <p class="margin-b-5"><strong>Dataset:</strong> Netflix Library</p>
-                            <p class="margin-b-5"><strong>Range:</strong> 1959 - 2021</p>
-                            <p class="margin-b-5"><strong>Focus:</strong> Global Distribution</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header fade-in">
+      <div class="section-tag">05 — Contact</div>
+      <h2 class="section-title">Let's work together.</h2>
     </div>
-    </div>
-                            <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 md-margin-b-4">
-    <div class="work work-popup-trigger">
-        <div class="work-overlay">
-            <img class="full-width img-responsive" src="img/397x300/01.jpg" alt="Intra and Inter Firm Analysis">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <p class="contact-intro">I'm currently open to new opportunities in finance, data analytics, and financial technology. Whether you have a project, a question, or just want to connect — reach out!</p>
+        <a href="mailto:gdsarath2003@gmail.com" class="btn-primary" style="display:inline-flex;">Send an Email</a>
+        <div class="contact-social" style="margin-top:2rem;">
+          <a href="mailto:gdsarath2005@gmail.com" class="social-btn" title="Email">✉</a>
+          <a href="https://www.linkedin.com/in/gd-sarath" target="_blank" class="social-btn" title="LinkedIn">in</a>
+          <a href="https://github.com/gdsarath" target="_blank" class="social-btn" title="GitHub">⌥</a>
         </div>
-        <div class="work-popup-overlay">
-            <div class="work-popup-content">
-                <a href="javascript:void(0);" class="work-popup-close">Hide</a>
-                <div class="margin-b-30">
-                    <h3 class="margin-b-5">Intra and Inter Firm Analysis</h3>
-                    <span>Financial Performance & Comparative Study</span>
-                </div>
-                <div class="row">
-                    <div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p>This project involves a detailed analysis of financial performance, comparing metrics within a single organization (Intra) and against industry competitors (Inter). It aims to identify trends, strengths, and areas for operational improvement.</p>
-                            
-                            
-                            <ul class="list-inline work-popup-tag">
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">WITH ORGINAL DATA BASE</a></li>
-                                
-                               
-                            </ul>
-
-                            <div class="margin-t-20">
-                                <a href="https://github.com/gdsarath/INTRA-AND-INTER-FIRM-ANALYSIS.git"target="_blank" style="color: #515769; font-weight: 700;">
-                                View File on GitHub <i class="icon-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p class="margin-b-5"><strong>Developer:</strong> GD Sarath</p>
-                            <p class="margin-b-5"><strong>Project Type:</strong> Financial Analysis</p>
-                            <p class="margin-b-5"><strong>Category:</strong> Corporate Finance</p>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="contact-items fade-in">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <span class="contact-value">Salem, Tamil Nadu, India</span>
+          </div>
         </div>
-    </div>
-    </div>
-                            <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 md-margin-b-4">
-    <div class="work work-popup-trigger">
-        <div class="work-overlay">
-            <img class="full-width img-responsive" src="img/397x300/02.jpg" alt="JPM Equity Hub">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <a href="tel:+918438887503" class="contact-value">+91 84388 87503</a>
+          </div>
         </div>
-        <div class="work-popup-overlay">
-            <div class="work-popup-content">
-                <a href="javascript:void(0);" class="work-popup-close">Hide</a>
-                <div class="margin-b-30">
-                    <h3 class="margin-b-5">JPM Equity Hub</h3>
-                    <span>Predictive Pricing & Trust Modeling</span>
-                </div>
-                <div class="row">
-                    <div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p>An interactive Power BI suite analyzing 45 years of JPMorgan Chase market data. This project features advanced DAX measures for real-time calculation and trend forecasting to predict market movements.</p>
-                            <p>It also includes a unique "Deep Dive" into Algorithmic Trust, evaluating the reliability of automated trading models over decades of volatility.</p>
-                            
-                            <ul class="list-inline work-popup-tag">
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">Power BI,</a></li>
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">DAX,</a></li>
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">Predictive Analytics</a></li>
-                            </ul>
-
-                            <div class="margin-t-20">
-                                 <a href="https://github.com/gdsarath/Predictive-Pricing-Trust-Modeling.git" target="_blank" target="_blank" style="color: #515769; font-weight: 700;">
-                                View File on GitHub <i class="icon-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p class="margin-b-5"><strong>Tools:</strong> Power BI & DAX</p>
-                            <p class="margin-b-5"><strong>Data Scope:</strong> 45 Years</p>
-                            <p class="margin-b-5"><strong>Analysis:</strong> Predictive</p>
-                            <p class="margin-b-5"><strong>Focus:</strong> Algorithmic Trust</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <a href="mailto:gdsarath2003@gmail.com" class="contact-value">gdsarath2003@gmail.com</a>
+          </div>
         </div>
-    </div>
-    </div>
-                            <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 margin-b-4">
-    <div class="work work-popup-trigger">
-        <div class="work-overlay">
-            <img class="full-width img-responsive" src="img/397x400/01.jpg" alt="Trend Analysis Project">
+        <div class="contact-item">
+          <div class="contact-icon">🔗</div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <a href="https://www.linkedin.com/in/gd-sarath" target="_blank" class="contact-value">linkedin.com/in/gd-sarath</a>
+          </div>
         </div>
-        <div class="work-popup-overlay">
-            <div class="work-popup-content">
-                <a href="javascript:void(0);" class="work-popup-close">Hide</a>
-                <div class="margin-b-30">
-                    <h3 class="margin-b-5">Trend Analysis</h3>
-                    <span>Data Visualization & Predictive Modeling</span>
-                </div>
-                <div class="row">
-                    <div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p>Trend analysis of Crompton Pvt Ltd financial performance from 2016–2025 using financial data and analytical methods</p>
-                            
-                            
-                            <ul class="list-inline work-popup-tag">
-                                <li class="work-popup-tag-item"><a class="work-popup-tag-link" href="#">WITH ORGINAL DATA BASE</a></li>
-                              
-                            </ul>
-
-                            <div class="margin-t-20">
-                                <a href="https://github.com/gdsarath/TREND-ANALYSIS.git" target="_blank" target="_blank" style="color: #515769; font-weight: 700;">
-                                View File on GitHub <i class="icon-arrow-right"></i>
-                            </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="margin-t-10 sm-margin-t-0">
-                            <p class="margin-b-5"><strong>Created By:</strong> GD Sarath</p>
-                            <p class="margin-b-5"><strong>Project:</strong> Trend Analysis</p>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    </div>
-                        </div>
-                        <!-- End Masonry Grid -->
-                    </div>
-                </div>
-                <!--// end row -->
-            </div>
-        </div>
-        <!-- End Work --
+  </section>
 
-       
-        <!-- publications -->
-        <div id="publications" class="bg-color-light">
-    <div class="container content-lg">
-        
-        <div class="row">
-            <div class="col-sm-3 sm-margin-b-30">
-                <div class="text-right sm-text-left">
-                    <h2 class="margin-b-0">Publications</h2>
-                    <p>My academic research papers.</p>
-                </div>
-            </div>
-            <div class="col-sm-8 col-sm-offset-1">
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 GD Sarath — Finance &amp; Analytics</span>
+    <span>Salem, Tamil Nadu · <a href="mailto:gdsarath2003@gmail.com">gdsarath2003@gmail.com</a></span>
+  </footer>
 
-                <div class="service-block-in margin-b-30"> 
-                    <div class="service-icon">
-                        <i class="icon-graph"></i>
-                    </div>
-                    <div class="service-info">
-                        <h3>AI in Commerce</h3>
-                        <p class="margin-b-5"><strong>Purpose:</strong> This paper explores how AI is reshaping commerce by automating processes, personalizing customer experiences, and enhancing data-driven decision-making. It analyzes AI's transformative impact on business operations while considering the ethical and technical challenges.</p>
-                        <p class="margin-b-5"><strong>Book:</strong> Next Gen Business Stratigies</p>
-                        <p class="margin-b-5"><strong>ISBN:</strong> 978-93-342-3230-1</p>
-                    </div>
-                </div>
+  <script>
+    // Certificate popup / lightbox
+    const cards = document.querySelectorAll('.course-card[data-cert]');
+    const overlay = document.getElementById('certOverlay');
+    const certImg = document.getElementById('certImg');
+    const certTitle = document.getElementById('certTitle');
+    const certCounter = document.getElementById('certCounter');
+    const certClose = document.getElementById('certClose');
+    const certPrev = document.getElementById('certPrev');
+    const certNext = document.getElementById('certNext');
 
-                <div class="service-block-in margin-b-30">
-                    <div class="service-icon">
-                        <i class="icon-screen-smartphone"></i>
-                    </div>
-                    <div class="service-info">
-                        <h3>Eco Mobile Banking</h3>
-                        <p class="margin-b-5"><strong>Purpose:</strong> This research investigates the role of FinTech and mobile banking in promoting environmental sustainability. It analyzes how digital banking solutions can reduce paper waste and carbon footprints, aligning financial technology with eco-friendly goals.</p>
-                        <p class="margin-b-5"><strong>Book:</strong> Empowering India’s Future</p>
-                        <p class="margin-b-5"><strong>ISBN:</strong> 978-93-48151-47-6</p>
-                    </div>
-                </div>
+    let currentIndex = 0;
+    const certs = Array.from(cards).map(c => ({
+      src: c.dataset.cert,
+      title: c.dataset.certTitle
+    }));
 
-                <div class="service-block-in margin-b-30">
-                    <div class="service-icon">
-                        <i class="icon-shield"></i>
-                    </div>
-                    <div class="service-info">
-                        <h3>Biometrics in Payments</h3>
-                        <p class="margin-b-5"><strong>Purpose:</strong> This paper examines the evolution of contactless payments from cards to more secure biometric authentication. It argues that this shift not only enhances security and deters fraud but also builds greater user trust and creates a more seamless transaction experience.</p>
-                        <p class="margin-b-5"><strong>Book:</strong> The Future of Digitalization</p>
-                        <p class="margin-b-5"><strong>ISBN:</strong> 978-93-49882-13-3</p>
-                    </div>
-                </div>
-                
-                <div class="service-block-in"> <div class="service-icon">
-                        <i class="icon-people"></i>
-                    </div>
-                    <div class="service-info">
-                        <h3>Trans Entrepreneurship</h3>
-                        <p class="margin-b-5"><strong>Purpose:</strong> This publication investigates the significant challenges and inhibitions faced by transgender entrepreneurs. It analyzes the economic and social barriers they encounter while highlighting how supporting their ventures can drive economic mobility and foster social inclusion.</p>
-                        <p class="margin-b-5"><strong>Book:</strong> Inhibitions of Trans Entrepreneurs</p>
-                        <p class="margin-b-5"><strong>ISBN:</strong> 978-81-970764-7-3</p>
-                    </div>
-                </div>
+    function openCert(index) {
+      currentIndex = index;
+      certImg.src = certs[index].src;
+      certTitle.textContent = certs[index].title;
+      certCounter.textContent = `${index + 1} / ${certs.length}`;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
-            </div>
-            </div>
-    </div>
-</div>
-        <!-- End publications  -->
-        <!-- Contact -->
-        <div id="contact">
-            <div class="bg-color-sky-light">
-                <div class="container content-lg">
-                    <div class="row">
-                        <div class="col-sm-3 sm-margin-b-30">
-                            <div class="text-right sm-text-left">
-                                <h2 class="margin-b-0">Contacts</h2>
-                                <p>Hire me.</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-8 col-sm-offset-1">
-                            <div class="row">
-                                <div class="col-md-3 col-xs-6 md-margin-b-30">
-                                    <h5>Location</h5>
-                                    <a href="#">Salem , Tamil Nadu, India.</a>
-                                </div>
-                                <div class="col-md-3 col-xs-6 md-margin-b-30">
-                                    <h5>Phone</h5>
-                                    <a href="tel:+918438887503">+91 8438887503</a></p>
-                                </div>
-                                <div class="col-md-3 col-xs-6">
-                                    <h5>Email</h5>
-                                    <a href="mailto:#">gdsarath2003@gmail.com</a>
-                                </div>
-                                <div class="col-md-3 col-xs-6">
-                                    <h5>Web</h5>
-                                    <a href="#">Gdsarath.com</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--// end row -->
-                </div>
-            </div>
-        </div>
-        <!-- End Contact -->
-        <!--========== END PAGE LAYOUT ==========-->
+    function closeCert() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-       
+    cards.forEach((card, i) => card.addEventListener('click', () => openCert(i)));
+    certClose.addEventListener('click', closeCert);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeCert(); });
 
-        <!-- Back To Top -->
-        <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+    certPrev.addEventListener('click', () => openCert((currentIndex - 1 + certs.length) % certs.length));
+    certNext.addEventListener('click', () => openCert((currentIndex + 1) % certs.length));
 
-        <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-        <!-- CORE PLUGINS -->
-        <script src="vendor/jquery.min.js" type="text/javascript"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-        <script src="vendor/jquery-migrate.min.js" type="text/javascript"></script>
-        <script src="vendor/jquery.min.js" type="text/javascript"></script>
-        <script src="vendor/jquery-migrate.min.js" type="text/javascript"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('active')) return;
+      if (e.key === 'Escape') closeCert();
+      if (e.key === 'ArrowLeft') openCert((currentIndex - 1 + certs.length) % certs.length);
+      if (e.key === 'ArrowRight') openCert((currentIndex + 1) % certs.length);
+    });
 
-        <!-- PAGE LEVEL PLUGINS -->
-        <script src="vendor/jquery.easing.js" type="text/javascript"></script>
-        <script src="vendor/jquery.back-to-top.js" type="text/javascript"></script>
-        <script src="vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
-        <script src="vendor/jquery.wow.min.js" type="text/javascript"></script>
-        <script src="vendor/jquery.parallax.min.js" type="text/javascript"></script>
-        <script src="vendor/jquery.appear.js" type="text/javascript"></script>
-        <script src="vendor/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
-        <script src="vendor/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
 
-        <!-- PAGE LEVEL SCRIPTS -->
-        <script src="js/layout.min.js" type="text/javascript"></script>
-        <script src="js/components/progress-bar.min.js" type="text/javascript"></script>
-        <script src="js/components/masonry.min.js" type="text/javascript"></script>
-        <script src="js/components/wow.min.js" type="text/javascript"></script>
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    </body>
-    <!-- END BODY -->
-
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+      });
+    });
+  </script>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
